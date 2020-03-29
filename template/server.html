@@ -59,7 +59,7 @@
       <div viewname="home">
         <template is="dom-repeat" items="[[_lobbylist]]">
           <div class="lobby layout horizontal end">
-            <div class="flex">Lobby #[[item.id]]</div>
+            <div class="flex">[[item.name]]</div>
             <papan-join-button route="{{route}}" lobby-id="[[item.id]]"></papan-join-button>
           </div>
         </template>
