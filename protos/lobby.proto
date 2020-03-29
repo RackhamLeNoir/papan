@@ -220,6 +220,7 @@ message LobbyUpdate {
 enum LobbyStatus {
   ADDED = 0;
   REMOVED = 1;
+  UPDATED = 2;
 }
 
 message ListLobbiesRequest { }

@@ -264,8 +264,15 @@ class PersistClient {
     return this.getLobbyInfo({ id: id })
   }
 
-  setLobbyName (data) {
-    return this._setLobbyField(deepmerge(data, { field: 'name' }))
+  async setLobbyName (data) {
+    const info = await this._setLobbyField(deepmerge(data, { field: 'name' }))
+    if (info.public) {
+      await this._client.publish('publiclobbies', PapanUtils.JSON.stringify({
+        id: data.id,
+        status: 'UPDATED'
+      }))
+    }
+    return info
   }
 
   async setLobbyPublic (data) {

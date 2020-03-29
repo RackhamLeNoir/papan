@@ -40,6 +40,12 @@ class LobbyInterface extends global.EventEmitter {
     })
     channel.on('PapanLobby.PublicLobbyUpdate', data => {
       const id = data.lobby.id
+      if (data.status === 'UPDATED') {
+        if (this.lobbyList[id]) {
+          this.lobbyList[id].update(data)
+        }
+        this.emit('publicLobbyUpdate', data.lobby)
+      }
       if (data.status === 'ADDED' && !this.lobbyList[id]) {
         if (this.publicLobbyList[id]) {
           this.emit('publicLobbyUpdate', data.lobby)

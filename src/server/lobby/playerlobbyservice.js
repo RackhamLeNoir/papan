@@ -222,7 +222,7 @@ const ListLobbies = call => {
       lobbies.forEach(info => {
         call.write({
           lobby: info,
-          status: 0
+          status: 'ADDED'
         })
       })
     })
